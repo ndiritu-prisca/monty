@@ -11,16 +11,16 @@ void open_read(char **av)
 {
 	void (*func_p)(stack_t **, unsigned int);
 	FILE *fp;
-	char *buf = NULL, *token = NULL, command[1024];
-	size_t len = 0;
-	ssize_t bytes_read;
+	char *token = NULL, command[1024];
+	char *buf = malloc(sizeof(char) * 1024);
+	int len = 1024;
 	unsigned int line_counter = 1;
 	stack_t *top = NULL;
 
 	fp = fopen(av[1], "r");
 	if (fp == NULL)
 		open_err(av);
-	while ((bytes_read = getline(&buf, &len, fp)) != EOF)
+	while (fgets(buf, len, fp) != NULL)
 	{
 		token = strtok(buf, "\n\t\r ");
 		if (token == NULL)

@@ -48,4 +48,5 @@ void _stack(stack_t **top, unsigned int line_number)
 void _queue(stack_t **top, unsigned int line_number)
 {
 	(void)line_number;
+	(void)top;
 }
