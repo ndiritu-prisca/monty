@@ -19,13 +19,13 @@ void _pstr(stack_t **top, unsigned int line_number)
 		return;
 	}
 	temp = *top;
-	while (*temp != NULL)
+	while (temp != NULL)
 	{
 		num = temp->n;
-		if (num <= 0 || num 127)
+		if (num <= 0 || num > 127)
 			break;
 		putchar(num);
-		*temp = temp->next;
+		temp = temp->next;
 	}
 	putchar('\n');
 }
