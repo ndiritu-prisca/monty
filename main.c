@@ -1,15 +1,16 @@
 #include"monty.h"
+
 /**
  * main - Main entry
- * Description: Monty bytecodes files interpreter
- * @argc: total of arguments
- * @argv: The arguments, monty files
- * Return: int
+ * Description: Monty bytecodes file interpreter
+ * @ac: argument count
+ * @av: argument vector (monty files)
+ * Return: 0 on success
  */
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
-  if (argc != 2)
-    error_arguments();
-  open_and_read(argv);
-  return (0);
+	if (ac != 2)
+		args_err();
+	open_read(av);
+	return (0);
 }

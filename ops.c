@@ -1,19 +1,19 @@
 #include "monty.h"
+
 /**
- * get_op_code - contain the function that will perform the operation
+ * get_op_code - function pointer to functions that perform various operations
  * @token: operation code
- * @line: line readed
+ * @line: line read
  * Return: void
  */
 void (*get_op_code(char *token, unsigned int line)) (stack_t **, unsigned int)
 {
-  /*arreglo de estructuras*/
-  int i;
-  instruction_t operation[] = {
-			       {"push", push_stack},
-			       {"pall", pall_stack},
-			       {"pint", pint_stack},
-			       {"pop", pop_stack},
+	int i;
+	instruction_t operation[] = {
+			       {"push", _push},
+			       {"pall", _pall},
+			       {"pint", _pint},
+			       {"pop", _pop},
 			       {"swap", _swap},
 			       {"nop", _nop},
 			       {"add", _add},
@@ -21,19 +21,19 @@ void (*get_op_code(char *token, unsigned int line)) (stack_t **, unsigned int)
 			       {"div", _div},
 			       {"mul", _mul},
 			       {"mod", _mod},
-			       {"rotl", rotl_stack},
-			       {"rotr", rotr_stack},
+			       {"rotl", _rotl},
+			       {"rotr", _rotr},
 			       {"pchar", _pchar},
-			       {"pstr", pstr_stack},
+			       {"pstr", _pstr},
+			       {"stack", _stack},
+			       {"queue", _queue},
 			       {NULL, NULL}
-  };
-  for (i = 0; operation[i].opcode != NULL; i++)
-    {
-      if (strcmp(token, operation[i].opcode) == 0)
+	};
+	for (i = 0; operation[i].opcode != NULL; i++)
 	{
-	  return (operation[i].f);
+		if (strcmp(token, operation[i].opcode) == 0)
+			return (operation[i].f);
 	}
-    }
-  invalidInstruction_error(token, line);
-  return (NULL);
+	instruction_err(token, line);
+	return (NULL);
 }

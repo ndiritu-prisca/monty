@@ -1,31 +1,51 @@
 #include "monty.h"
+
 /**
- * pstr_stack -main entry
- * Description: prints the string starting at the top of the stack.
+ * _pstr - a function that prints the string starting at the top of the stack.
  * @top: element at the top of the stack (head)
  * @line_number: line
  * Return: void
  */
-void pstr_stack(stack_t **top, unsigned int line_number)
+void _pstr(stack_t **top, unsigned int line_number)
 {
-  stack_t *tmp;
-  int ascii_num;
 
-  (void)line_number;
-  if (*top == NULL)
-    {
-      putchar('\n');
-      return;
-    }
-  tmp = *top;
-  while (tmp != NULL)
-    {
-      ascii_num = tmp->n;
+	(void)line_number;
 
-      if (ascii_num <= 0 || ascii_num > 127)
-	break;
-      putchar(ascii_num);
-      tmp = tmp->next;
-    }
-  putchar('\n');
+	if (*top == NULL)
+	{
+		putchar('\n');
+		return;
+	}
+	while (*top != NULL)
+	{
+		if ((*top)->n <= 0 || (*top)->n > 127)
+			break;
+		printf("%c", (*top)->n);
+		*top = (*top)->next;
+	}
+	putchar('\n');
+}
+
+/**
+ * _stack - a function that  sets the format of the data to a stack (LIFO)
+ * @top: element at the top of the stack (head)
+ * @line_number: line
+ * Return: void
+ */
+void _stack(stack_t **top, unsigned int line_number)
+{
+	(void)line_number;
+
+	(*top)->n = -1;
+}
+
+/**
+ * _queue - a function that sets the format of the data to a queue (FIFO).
+ * @top: element at the top of the stack (head)
+ * @line_number: line
+ * Return: void
+ */
+void _queue(stack_t **top, unsigned int line_number)
+{
+	(void)line_number;
 }
