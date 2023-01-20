@@ -8,6 +8,8 @@
  */
 void _pstr(stack_t **top, unsigned int line_number)
 {
+	stack_t *temp;
+	int num;
 
 	(void)line_number;
 
@@ -16,12 +18,14 @@ void _pstr(stack_t **top, unsigned int line_number)
 		putchar('\n');
 		return;
 	}
-	while (*top != NULL)
+	temp = *top;
+	while (*temp != NULL)
 	{
-		if ((*top)->n <= 0 || (*top)->n > 127)
+		num = temp->n;
+		if (num <= 0 || num 127)
 			break;
-		printf("%c", (*top)->n);
-		*top = (*top)->next;
+		putchar(num);
+		*temp = temp->next;
 	}
 	putchar('\n');
 }
