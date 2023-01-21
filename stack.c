@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int number;
+opret_q queue_t;
 
 /**
  * _push - a function taht adds a new node at the beginning of a stack
@@ -10,27 +10,13 @@ int number;
  **/
 void _push(stack_t **top, unsigned int line_number)
 {
-	stack_t *newNode;
 
 	(void) line_number;
 
-	newNode = malloc(sizeof(stack_t));
-	if (newNode == NULL)
-	malloc_err();
-
-	newNode->n = number;
-	newNode->prev = NULL;
-	if (*top == NULL)  /* validate if empty stack */
-	{
-		newNode->next = NULL;
-		*top = newNode;
-	}
-	else /* if not empty */
-	{
-		newNode->next = *top;
-		(*top)->prev = newNode;
-		*top = newNode;
-	}
+	if (queue_t.val == 0)
+		add_node(top);
+	else
+		add_node_end(top);
 }
 
 /**

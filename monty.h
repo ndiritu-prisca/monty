@@ -7,7 +7,6 @@
 #include <string.h>
 #include <ctype.h>
 
-extern int n;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -38,6 +37,20 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+  * struct queue_s - Return value of opcodes and if list is stack/queue
+  * @opcode_ret: Return value of the void opcode functions
+  * @val: 1 if list is a queue, 0 if it's a stack
+  *
+  */
+typedef struct queue_s
+{
+	int opcode_ret;
+	int val;
+	int number;
+} opret_q;
+extern opret_q queue_t;
 
 /* error_handler functions */
 void args_err(void);
@@ -96,5 +109,7 @@ void _pchar(stack_t **top, unsigned int line_number);
 void _pstr(stack_t **top, unsigned int line_number);
 void _stack(stack_t **top, unsigned int line_number);
 void _queue(stack_t **top, unsigned int line_number);
+void add_node(stack_t **top);
+void add_node_end(stack_t **top);
 
 #endif /* _MONTY_H_ */

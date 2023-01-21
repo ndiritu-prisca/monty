@@ -1,6 +1,6 @@
 #include "monty.h"
 
-int number;
+opret_q queue_t;
 
 /**
  * open_read - a function that opens, reads and executes monty files.
@@ -33,7 +33,7 @@ void open_read(char **av)
 			token = strtok(NULL, "\n\t\r ");
 			if (token == NULL || is_num(token) == -1)
 				num_err(line_counter);
-			number = atoi(token);
+			queue_t.number = atoi(token);
 			func_p = get_op_code(command, line_counter);
 			func_p(&top, line_counter);
 		}
